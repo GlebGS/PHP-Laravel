@@ -17,9 +17,9 @@ class CreateUserDataTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->string('img')->default('/img/');
-            $table->string('position');
-            $table->integer('phone');
-            $table->string('address');
+            $table->string('position')->nullable();
+            $table->integer('phone')->nullable();
+            $table->string('address')->nullable();
             $table->integer('status')->default(1);
             $table->timestamps();
         });
