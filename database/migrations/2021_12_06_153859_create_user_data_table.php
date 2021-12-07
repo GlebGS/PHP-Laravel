@@ -16,7 +16,7 @@ class CreateUserDataTable extends Migration
         Schema::create('user_data', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->string('img')->default('/img/');
+            $table->string('img')->default('/img/demo/avatars/avatar-m.png');
             $table->string('position')->nullable();
             $table->integer('phone')->nullable();
             $table->string('address')->nullable();

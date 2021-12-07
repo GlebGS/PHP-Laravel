@@ -12,6 +12,8 @@ class UserData extends Model
 
   public static function register ($data)
   {
-      DB::table('user_data')->insert($data);
+      DB::table('user_data')->insert([
+          'user_id' => $data,
+      ]);
   }
 }
