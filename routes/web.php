@@ -13,8 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth')->group(function (){
-    Route::get('/', 'App\Http\Controllers\HomeController@index')->name('main');
+Route::prefix('user')->group(function (){
+    Route::middleware('auth')->group(function (){
+        Route::get('/id={id}', 'App\Http\Controllers\HomeController@index');
+    });
 });
 
 Route::get('/logout', 'App\Http\Controllers\UserController@logout')->name('logout');

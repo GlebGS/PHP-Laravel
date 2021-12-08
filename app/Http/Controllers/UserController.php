@@ -43,9 +43,10 @@ class UserController extends Controller
 
     public function login(Request $request){
         $formField = $request->only(['email', 'password']);
+        $id = User::findUser($formField)->id;
 
         if (Auth::attempt($formField)){
-            return redirect()->intended(route('main'));
+            return redirect()->intended("/user/id=$id");
         }
 
         if (!Auth::attempt($formField)){
@@ -57,6 +58,6 @@ class UserController extends Controller
 
     public function logout(){
         Auth::logout();
-        return redirect('/');
+        return redirect('/login');
     }
 }
