@@ -68,8 +68,7 @@
 
                                     <form id="js-login" novalidate="" method="post" action="/register">
 
-                                        {{csrf_field()}}
-
+                                        @csrf
 
                                         <div class="form-group">
                                             <label class="form-label" for="nameverify">Имя</label>

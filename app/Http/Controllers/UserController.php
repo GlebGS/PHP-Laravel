@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\UserData;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Contracts\Auth\Authenticatable;
 
 class UserController extends Controller
 {
@@ -37,5 +39,24 @@ class UserController extends Controller
 
         return redirect(route('login'))
             ->with('success', 'Регистрация успешна');
+    }
+
+    public function login(Request $request){
+        $formField = $request->only(['email', 'password']);
+
+        if (Auth::attempt($formField)){
+            return redirect()->intended(route('main'));
+        }
+
+        if (!Auth::attempt($formField)){
+            return redirect(route('login'))
+                ->with('error', 'Неправильно введёные данные!');
+        }
+
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect('/');
     }
 }
