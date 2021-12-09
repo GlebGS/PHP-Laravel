@@ -15,6 +15,10 @@ class User extends Model implements AuthenticatableContract
     use Authenticatable;
     use HasFactory;
 
+    public function userData(){
+        return $this->hasMany(UserData::class);
+    }
+
     public static function register($data)
     {
         DB::table('users')->insert($data);
@@ -24,6 +28,13 @@ class User extends Model implements AuthenticatableContract
     {
         return DB::table('users')->where([
             'email' => $data['email'],
+        ])->first();
+    }
+
+    public static function findUserOnID($data)
+    {
+        return DB::table('users')->where([
+            'id' => $data,
         ])->first();
     }
 }
