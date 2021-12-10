@@ -10,6 +10,12 @@
 
         </div>
 
+        @if(\Illuminate\Support\Facades\Session::has('success'))
+            <div class="alert alert-success text-dark" role="alert">
+                <strong>Уведомление!</strong> {{\Illuminate\Support\Facades\Session::get('success')}}
+            </div>
+        @endif
+
         <form method="post" action="/edit_user{{"/id=$id"}}" >
 
             @csrf

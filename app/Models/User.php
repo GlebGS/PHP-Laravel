@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Model implements AuthenticatableContract
 {
@@ -44,4 +45,11 @@ class User extends Model implements AuthenticatableContract
         return ServiceController::updateUserDataTwoTables('users', 'user_data', $id, $data);
     }
 
+    public static function changePassword($newPassword, $oldPassword){
+        return Hash::check($newPassword, $oldPassword);
+    }
+
+    public static function updateUser($table, $data, $id){
+        return ServiceController::updateUserData($table, $data, $id);
+    }
 }

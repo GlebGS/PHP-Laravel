@@ -44,4 +44,14 @@ class HomeController extends Controller
             'id' => $id,
         ]);
     }
+
+    public function security(Request $request){
+        $id = $request->id;
+        $user = User::findUserData($id);
+
+        return view('security', [
+            'user' => $user,
+            'id' => $id,
+        ]);
+    }
 }

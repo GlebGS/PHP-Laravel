@@ -42,4 +42,10 @@ class ServiceController
             ->update($data);
     }
 
+    public static function updateUserData($table, $data, $id){
+        return DB::table($table)
+            ->where("id", '=', $id)
+            ->update($data);
+    }
+
 }
