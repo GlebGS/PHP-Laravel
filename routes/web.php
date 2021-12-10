@@ -16,13 +16,14 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('user')->group(function (){
     Route::middleware('auth')->group(function (){
         Route::get('/id={id}', 'App\Http\Controllers\HomeController@index');
+        Route::get('/edit/id={id}', 'App\Http\Controllers\HomeController@edit');
     });
 });
 
 Route::get('/logout', 'App\Http\Controllers\UserController@logout')->name('logout');
-
 Route::get('/registration', 'App\Http\Controllers\HomeController@register')->name('register');
-Route::post('/register', 'App\Http\Controllers\UserController@register');
-
 Route::get('/login', 'App\Http\Controllers\HomeController@login')->name('login');
+
+Route::post('/register', 'App\Http\Controllers\UserController@register');
 Route::post('/log_in', 'App\Http\Controllers\UserController@login');
+Route::post('/edit_user', 'App\Http\Controllers\UserController@edit')->name('edit');

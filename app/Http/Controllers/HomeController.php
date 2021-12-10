@@ -3,19 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    public function index(Request $request){
-        $user = User::all();
+    public function index(){
+        $users = User::all();
 
         $role = Auth::user()->role;
         $id = Auth::id();
 
         return view('users', [
-            'users' => $user,
+            'users' => $users,
             'role' => $role,
             'id' => $id,
         ]);
@@ -27,5 +28,19 @@ class HomeController extends Controller
 
     public function login(){
         return view('login');
+    }
+
+    public function edit(){
+        $role = Auth::user()->role;
+        $id = Auth::id();
+
+        $user = User::findUserData($id);
+
+
+        return view('edit', [
+            'user' =>$user,
+            'role' => $role,
+            'id' => $id,
+        ]);
     }
 }

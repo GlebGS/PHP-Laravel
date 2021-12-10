@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\ServiceController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -15,26 +16,32 @@ class User extends Model implements AuthenticatableContract
     use Authenticatable;
     use HasFactory;
 
-    public function userData(){
+    public function userData()
+    {
         return $this->hasMany(UserData::class);
     }
 
     public static function register($data)
     {
-        DB::table('users')->insert($data);
+        return ServiceController::insertDataInOneTable('users', $data);
     }
 
     public static function findUser($data)
     {
-        return DB::table('users')->where([
-            'email' => $data['email'],
-        ])->first();
+        return ServiceController::findUserByData('users', $data);
     }
 
     public static function findUserOnID($data)
     {
-        return DB::table('users')->where([
-            'id' => $data,
-        ])->first();
+        return ServiceController::findUserById('users', $data);
     }
+
+    public static function findUserData($id){
+        return ServiceController::findUserTwoTables('users', 'user_data', $id);
+    }
+
+    public static function updateUserData($data, $id){
+        return ServiceController::updateUserDataTwoTables('users', 'user_data', $id, $data);
+    }
+
 }
