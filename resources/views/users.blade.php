@@ -79,7 +79,7 @@
                                             <a class="dropdown-item" href="/user/security/id={{$user['id']}}">
                                                 <i class="fa fa-lock"></i>
                                                 Безопасность</a>
-                                            <a class="dropdown-item" href="status.html">
+                                            <a class="dropdown-item" href="/user/status/id={{$id}}">
                                                 <i class="fa fa-sun"></i>
                                                 Установить статус</a>
                                             <a class="dropdown-item" href="media.html">

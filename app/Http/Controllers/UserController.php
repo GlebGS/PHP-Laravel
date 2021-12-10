@@ -49,11 +49,8 @@ class UserController extends Controller
             return redirect()->intended("/user/id=$id");
         }
 
-        if (!Auth::attempt($formField)) {
-            return redirect(route('login'))
-                ->with('error', 'Неправильно введёные данные!');
-        }
-
+        return redirect(route('login'))
+            ->with('error', 'Неправильно введёные данные!');
     }
 
     public function logout()
@@ -104,4 +101,19 @@ class UserController extends Controller
         return back()
             ->with('error', 'Не верно введёный пароль!');
     }
+
+    public function status(Request $request)
+    {
+        $data = [
+          'status' => $request->option
+        ];
+
+        $id = $request->id;
+
+        User::updateUserData($data, $id);
+
+        return back()
+            ->with('success', 'Статус успешно изменён!');
+    }
+
 }

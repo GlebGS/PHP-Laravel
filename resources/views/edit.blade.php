@@ -16,7 +16,7 @@
             </div>
         @endif
 
-        <form method="post" action="/edit_user{{"/id=$id"}}" >
+        <form method="post" action="/edit_user{{"/id=$id"}}">
 
             @csrf
 
@@ -31,7 +31,8 @@
                                 <!-- username -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Имя</label>
-                                    <input type="text" name="name" id="simpleinput" class="form-control" value="{{$user->name}}">
+                                    <input type="text" name="name" id="simpleinput" class="form-control"
+                                           value="{{$user->name}}">
                                 </div>
 
                                 <!-- title -->
@@ -44,7 +45,8 @@
                                 <!-- tel -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Номер телефона</label>
-                                    <input type="text" name="phone" id="simpleinput" class="form-control" value="{{$user->phone}}">
+                                    <input type="text" name="phone" id="simpleinput" class="form-control"
+                                           value="{{$user->phone}}">
                                 </div>
 
                                 <!-- address -->

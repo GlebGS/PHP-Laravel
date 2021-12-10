@@ -54,4 +54,14 @@ class HomeController extends Controller
             'id' => $id,
         ]);
     }
+
+    public function status(Request $request){
+        $id = $request->id;
+        $user = User::findUserData($id);
+
+        return view('status', [
+            'user' => $user,
+            'id' => $id,
+        ]);
+    }
 }

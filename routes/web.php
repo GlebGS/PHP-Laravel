@@ -18,6 +18,7 @@ Route::prefix('user')->group(function (){
         Route::get('/id={id}', 'App\Http\Controllers\HomeController@index');
         Route::get('/edit/id={id}', 'App\Http\Controllers\HomeController@edit');
         Route::get('/security/id={id}', 'App\Http\Controllers\HomeController@security');
+        Route::get('/status/id={id}', 'App\Http\Controllers\HomeController@status');
     });
 });
 
@@ -29,3 +30,4 @@ Route::post('/register', 'App\Http\Controllers\UserController@register');
 Route::post('/log_in', 'App\Http\Controllers\UserController@login');
 Route::post('/edit_user/id={id}', 'App\Http\Controllers\UserController@edit')->name('edit');
 Route::post('/security/id={id}', 'App\Http\Controllers\UserController@security')->name('security');
+Route::post('/status/id={id}', 'App\Http\Controllers\UserController@status')->name('status');
