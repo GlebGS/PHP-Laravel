@@ -26,4 +26,4 @@ Route::get('/login', 'App\Http\Controllers\HomeController@login')->name('login')
 
 Route::post('/register', 'App\Http\Controllers\UserController@register');
 Route::post('/log_in', 'App\Http\Controllers\UserController@login');
-Route::post('/edit_user', 'App\Http\Controllers\UserController@edit')->name('edit');
+Route::post('/edit_user/id={id}', 'App\Http\Controllers\UserController@edit')->name('edit');

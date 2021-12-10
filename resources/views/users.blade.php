@@ -73,7 +73,7 @@
 
                                     @if($role === 'admin' OR $user['id'] === $id)
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="/user/edit/id={{$id}}">
+                                            <a class="dropdown-item" href="/user/edit/id={{$user['id']}}">
                                                 <i class="fa fa-edit"></i>
                                                 Редактировать</a>
                                             <a class="dropdown-item" href="security.html">

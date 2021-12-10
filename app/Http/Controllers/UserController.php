@@ -7,9 +7,6 @@ use App\Models\UserData;
 use App\Services\ServiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Contracts\Auth\Authenticatable;
 
 class UserController extends Controller
 {
@@ -62,7 +59,7 @@ class UserController extends Controller
     }
 
     public function edit(Request $request){
-        $id = Auth::id();
+        $id = $request->id;
 
         $data = [
             'name' => $request->name,

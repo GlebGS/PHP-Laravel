@@ -10,7 +10,7 @@
 
         </div>
 
-        <form method="post" action="/edit_user">
+        <form method="post" action="/edit_user{{"/id=$id"}}" >
 
             @csrf
 
