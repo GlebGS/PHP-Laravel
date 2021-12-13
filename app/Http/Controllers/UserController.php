@@ -126,6 +126,7 @@ class UserController extends Controller
             'file' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
         ]);
 
+
         $file = $request->file('file');
         $directory = 'img/demo/avatars';
         $extension = $request->file('file')->getClientOriginalName();
@@ -135,7 +136,7 @@ class UserController extends Controller
         ];
 
         if ($file->move($directory, $extension)){
-            User::updateUserData($data, $id);
+            User::file('user_data', $data, $id);
         }
 
         return back()->with('success', 'Изображение было успешно изменено!');

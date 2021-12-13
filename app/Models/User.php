@@ -52,4 +52,8 @@ class User extends Model implements AuthenticatableContract
     public static function updateUser($table, $data, $id){
         return ServiceController::updateUserData($table, $data, $id);
     }
+
+    public static function file($table, $data, $id){
+        return ServiceController::uploadingFile($table, $data, $id);
+    }
 }

@@ -16,12 +16,6 @@
             </div>
         @endif
 
-        @if(\Illuminate\Support\Facades\Session::has('success'))
-            <div class="alert alert-error text-dark" role="alert">
-                <strong>Уведомление!</strong> {{\Illuminate\Support\Facades\Session::get('error')}}
-            </div>
-        @endif
-
         <form method="post" action="/media/id={{$id}}" enctype="multipart/form-data">
 
             @csrf

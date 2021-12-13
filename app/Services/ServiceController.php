@@ -48,4 +48,11 @@ class ServiceController
             ->update($data);
     }
 
+    public static function uploadingFile($table, $data, $id)
+    {
+        return DB::table($table)
+            ->where("user_id", '=', $id)
+            ->update($data);
+    }
+
 }
