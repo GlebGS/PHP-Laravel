@@ -9,15 +9,17 @@
     <div class="row">
         <div class="col-xl-12">
 
-            @if(!$role === 'user')
+            @if($role === 'admin')
                 <a class="btn btn-success" href="create_user.html">Добавить</a>
             @endif
 
             <div class="border-faded bg-faded p-3 mb-g d-flex mt-3">
-                <input type="text" id="js-filter-contacts" name="filter-contacts" class="form-control shadow-inset-2 form-control-lg" placeholder="Найти пользователя">
+                <input type="text" id="js-filter-contacts" name="filter-contacts"
+                       class="form-control shadow-inset-2 form-control-lg" placeholder="Найти пользователя">
                 <div class="btn-group btn-group-lg btn-group-toggle hidden-lg-down ml-3" data-toggle="buttons">
                     <label class="btn btn-default active">
-                        <input type="radio" name="contactview" id="grid" checked="" value="grid"><i class="fas fa-table"></i>
+                        <input type="radio" name="contactview" id="grid" checked="" value="grid"><i
+                            class="fas fa-table"></i>
                     </label>
                     <label class="btn btn-default">
                         <input type="radio" name="contactview" id="table" value="table"><i class="fas fa-th-list"></i>
@@ -35,13 +37,13 @@
                 <?php
                 switch ($data['status']) {
                     case 0:
-                        $data['status'] = "warning";
+                        $data['status'] = "danger";
                         break;
                     case 1:
                         $data['status'] = "success";
                         break;
                     case 2:
-                        $data['status'] = "danger";
+                        $data['status'] = "warning";
                         break;
                 }
                 ?>
@@ -79,10 +81,10 @@
                                             <a class="dropdown-item" href="/user/security/id={{$user['id']}}">
                                                 <i class="fa fa-lock"></i>
                                                 Безопасность</a>
-                                            <a class="dropdown-item" href="/user/status/id={{$id}}">
+                                            <a class="dropdown-item" href="/user/status/id={{$user['id']}}">
                                                 <i class="fa fa-sun"></i>
                                                 Установить статус</a>
-                                            <a class="dropdown-item" href="media.html">
+                                            <a class="dropdown-item" href="/user/media/id={{$user['id']}}">
                                                 <i class="fa fa-camera"></i>
                                                 Загрузить аватар
                                             </a>

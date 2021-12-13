@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\UserData;
 use App\Services\ServiceController;
+use Dflydev\DotAccessData\Data;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -31,7 +33,7 @@ class UserController extends Controller
             'password' => bcrypt($request->password),
         ];
 
-        User::register($data);
+        User::register('users', $data);
 
         $id = ServiceController::lastId('users');
         UserData::register($id);
@@ -114,6 +116,29 @@ class UserController extends Controller
 
         return back()
             ->with('success', 'Статус успешно изменён!');
+    }
+
+    public function media(Request $request)
+    {
+        $id = $request->id;
+
+        $request->validate([
+            'file' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
+        ]);
+
+        $file = $request->file('file');
+        $directory = 'img/demo/avatars';
+        $extension = $request->file('file')->getClientOriginalName();
+
+        $data = [
+            'img' => '/' . $directory . '/' . $extension,
+        ];
+
+        if ($file->move($directory, $extension)){
+            User::updateUserData($data, $id);
+        }
+
+        return back()->with('success', 'Изображение было успешно изменено!');
     }
 
 }

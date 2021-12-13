@@ -64,4 +64,14 @@ class HomeController extends Controller
             'id' => $id,
         ]);
     }
+
+    public function media(Request $request){
+        $id = $request->id;
+        $user = User::findUserData($id);
+
+        return view('media', [
+            'user' => $user,
+            'id' => $id,
+        ]);
+    }
 }

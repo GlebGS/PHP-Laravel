@@ -22,9 +22,9 @@ class User extends Model implements AuthenticatableContract
         return $this->hasMany(UserData::class);
     }
 
-    public static function register($data)
+    public static function register($table, $data)
     {
-        return ServiceController::insertDataInOneTable('users', $data);
+        return ServiceController::insertDataInOneTable($table, $data);
     }
 
     public static function findUser($data)
