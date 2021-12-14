@@ -17,10 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('user')->group(function (){
     Route::middleware('auth')->group(function (){
         Route::get('/id={id}', 'App\Http\Controllers\HomeController@index');
+        Route::get('/create/id={id}', 'App\Http\Controllers\HomeController@create');
         Route::get('/edit/id={id}', 'App\Http\Controllers\HomeController@edit');
         Route::get('/security/id={id}', 'App\Http\Controllers\HomeController@security');
         Route::get('/status/id={id}', 'App\Http\Controllers\HomeController@status');
         Route::get('/media/id={id}', 'App\Http\Controllers\HomeController@media');
+        Route::get('/delete/id={id}', 'App\Http\Controllers\UserController@delete');
     });
 });
 
@@ -34,3 +36,4 @@ Route::post('/edit_user/id={id}', 'App\Http\Controllers\UserController@edit');
 Route::post('/security/id={id}', 'App\Http\Controllers\UserController@security');
 Route::post('/status/id={id}', 'App\Http\Controllers\UserController@status');
 Route::post('/media/id={id}', 'App\Http\Controllers\UserController@media');
+Route::post('/create_user/id={id}', 'App\Http\Controllers\UserController@create');

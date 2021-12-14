@@ -142,4 +142,28 @@ class UserController extends Controller
         return back()->with('success', 'Изображение было успешно изменено!');
     }
 
+    public function delete(Request $request){
+        $id = $request->id;
+        User::deleteUser($id);
+
+        return back();
+    }
+
+    public function create(Request $request){
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users','regex:/^[w-.+]+@[a-zA-Z0-9.-]+.[a-zA-z0-9]{2,6}$/',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+        ];
+
+        if (User::createUser($data)){
+            $lastId = ServiceController::lastId('users');
+        }
+    }
 }

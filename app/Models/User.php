@@ -27,6 +27,11 @@ class User extends Model implements AuthenticatableContract
         return ServiceController::insertDataInOneTable($table, $data);
     }
 
+    public static function createUser($data)
+    {
+        return ServiceController::createUser('users', 'user_data', $data);
+    }
+
     public static function findUser($data)
     {
         return ServiceController::findUserByData('users', $data);
@@ -55,5 +60,9 @@ class User extends Model implements AuthenticatableContract
 
     public static function file($table, $data, $id){
         return ServiceController::uploadingFile($table, $data, $id);
+    }
+
+    public static function deleteUser($id){
+        return ServiceController::deleteUser('users', $id);
     }
 }

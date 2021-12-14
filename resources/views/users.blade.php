@@ -10,7 +10,7 @@
         <div class="col-xl-12">
 
             @if($role === 'admin')
-                <a class="btn btn-success" href="create_user.html">Добавить</a>
+                <a class="btn btn-success" href="/user/create/id={{$id}}">Добавить</a>
             @endif
 
             <div class="border-faded bg-faded p-3 mb-g d-flex mt-3">
@@ -88,7 +88,7 @@
                                                 <i class="fa fa-camera"></i>
                                                 Загрузить аватар
                                             </a>
-                                            <a href="#" class="dropdown-item"
+                                            <a href="/user/delete/id={{$user['id']}}" class="dropdown-item"
                                                onclick="return confirm('are you sure?');">
                                                 <i class="fa fa-window-close"></i>
                                                 Удалить

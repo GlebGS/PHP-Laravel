@@ -23,6 +23,14 @@ class HomeController extends Controller
         ]);
     }
 
+    public function create(){
+        $id = Auth::id();
+
+        return view('create', [
+            'id' => $id,
+        ]);
+    }
+
     public function register(){
         return view('register');
     }

@@ -55,4 +55,17 @@ class ServiceController
             ->update($data);
     }
 
+    public static function deleteUser($table, $id)
+    {
+        return DB::table($table)
+            ->where('id', '=', $id)
+            ->delete();
+    }
+
+    public static function createUser($table, $secondTable, $data)
+    {
+
+    }
+
+
 }
