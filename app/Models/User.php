@@ -27,11 +27,6 @@ class User extends Model implements AuthenticatableContract
         return ServiceController::insertDataInOneTable($table, $data);
     }
 
-    public static function createUser($data)
-    {
-        return ServiceController::createUser('users', 'user_data', $data);
-    }
-
     public static function findUser($data)
     {
         return ServiceController::findUserByData('users', $data);

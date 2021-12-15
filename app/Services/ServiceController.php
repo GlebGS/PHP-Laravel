@@ -14,6 +14,12 @@ class ServiceController
         return DB::table($table)->insert($data);
     }
 
+    public static function insertDataInTwoTable($table, $secondTable, $userId, $data){
+        return DB::table($table)
+            ->join($secondTable, "$table.id", '=', "$secondTable.id")
+            ->insert($data);
+    }
+
     public static function findUserByData($table, $data){
         return DB::table($table)->where([
             'email' => $data['email'],
@@ -61,11 +67,5 @@ class ServiceController
             ->where('id', '=', $id)
             ->delete();
     }
-
-    public static function createUser($table, $secondTable, $data)
-    {
-
-    }
-
 
 }

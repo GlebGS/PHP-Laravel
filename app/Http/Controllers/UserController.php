@@ -19,7 +19,7 @@ class UserController extends Controller
         $validator = $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required|string|min:6|max:12',
         ]);
 
         if (!$validator) {
@@ -82,7 +82,7 @@ class UserController extends Controller
     {
         $request->validate([
             'password' => 'required',
-            'new_password' => 'required',
+            'new_password' => 'required|string|min:6|max:12',
         ]);
 
         $data = [
@@ -152,18 +152,29 @@ class UserController extends Controller
     public function create(Request $request){
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users','regex:/^[w-.+]+@[a-zA-Z0-9.-]+.[a-zA-z0-9]{2,6}$/',
-            'password' => 'required|string|min:6|confirmed',
+            'email' => 'required|email',
+            'password' => 'required|string|min:6|max:12',
         ]);
 
-        $data = [
+        $dataInOneTable = [
             'name' => $request->name,
             'email' => $request->email,
-            'password' => $request->password,
+            'password' => bcrypt($request->password),
         ];
 
-        if (User::createUser($data)){
-            $lastId = ServiceController::lastId('users');
-        }
+        ServiceController::insertDataInOneTable('users', $dataInOneTable);
+
+        $dataInSecondTable = [
+            'user_id' => ServiceController::lastId('users'),
+            'position' => $request->position,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'status' => $request->status,
+        ];
+
+        ServiceController::insertDataInOneTable('user_data', $dataInSecondTable);
+
+        return back()
+            ->with('success', 'Пользователь был успешно добавлен!');
     }
 }

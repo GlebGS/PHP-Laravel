@@ -9,6 +9,12 @@
             </h1>
         </div>
 
+        @if(\Illuminate\Support\Facades\Session::has('success'))
+            <div class="alert alert-success text-dark" role="alert">
+                <strong>Уведомление!</strong> {{\Illuminate\Support\Facades\Session::get('success')}}
+            </div>
+        @endif
+
         <form method="post" action="/create_user/id={{$id}}" enctype="multipart/form-data">
 
             @csrf
@@ -79,10 +85,6 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group">
-                                    <label class="form-label" for="example-fileinput">Загрузить аватар</label>
-                                    <input type="file" name="file" id="example-fileinput" class="form-control-file">
-                                </div>
                             </div>
                         </div>
 

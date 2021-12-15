@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('user')->group(function (){
     Route::middleware('auth')->group(function (){
-        Route::get('/id={id}', 'App\Http\Controllers\HomeController@index');
+        Route::get('/id={id}', 'App\Http\Controllers\HomeController@index')->name('main');
         Route::get('/create/id={id}', 'App\Http\Controllers\HomeController@create');
         Route::get('/edit/id={id}', 'App\Http\Controllers\HomeController@edit');
         Route::get('/security/id={id}', 'App\Http\Controllers\HomeController@security');

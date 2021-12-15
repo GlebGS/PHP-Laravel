@@ -34,12 +34,6 @@
 
 <main id="js-page-content" role="main" class="page-content mt-3">
 
-{{--    <div class="alert alert-success">--}}
-{{--        Профиль успешно обновлен.--}}
-{{--    </div>--}}
-
-
-
     @yield('content')
 
 </main>
